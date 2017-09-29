@@ -1,0 +1,32 @@
+<h3>
+    Add Animal
+</h3>
+<form [formGroup]="animalForm">
+    <label class="center-block">Name:
+        <input formControlName="name" class="form-control">
+    </label>
+    <label  class="center-block">Average Height:
+        <input formControlName="avgHeight" class="form-control">
+    </label>
+    <label  class="center-block">Average Weight:
+        <input formControlName="avgWeight" class="form-control">
+    </label>
+    <label  class="center-block">Class
+        <select  class="form-control" formControlName="class">
+            <option *ngFor="let animalClass of animalClasses" [value]='animalClass'>{{animalClass}}</option>
+        </select>
+    </label>
+    <label class="center-block">Description:
+        <textarea formControlName="description" id="" cols="30" rows="10" class="form-control"></textarea>
+    </label>
+    <label class="center-block">Image Url:
+        <input class="form-control" formControlName="imgPath">
+    </label>
+    <label  class="center-block">Quantity: 
+        <input formControlName="quantity" class="form-control">
+    </label>
+
+</form>
+
+
+<button class="btn btn-primary" (click)="checkAndSave()" >Save </button>

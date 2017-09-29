@@ -1,0 +1,3 @@
+<div class="row" *ngFor="let cls of categories">
+    <animal-list [animals]="getAnimals() | category:cls" [sectionTitle]="cls"></animal-list>
+</div>
