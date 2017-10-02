@@ -1,8 +1,7 @@
 <h2>{{sectionTitle}}</h2>
 <div class="row">
-    <div class="col-xs-3 pull-right">
-        
-    <label  class="center-block"> Order by: 
+    <div class="col-xs-3 pull-right">        
+        <label  class="center-block"> Order by: 
             <select  class="form-control input input-sm" [(ngModel)]="order">
                 <option value="name"> By name</option>
                 <option value="avgHeight">By Height</option>
@@ -11,4 +10,4 @@
         </label>
     </div>
 </div>
-<animal-card *ngFor="let animal of animals | orderBy: order" [animal]="animal" ></animal-card>
+<animal-card *ngFor="let animal of animals | orderBy: order" [animal]="animal"  (onZero)="handleZero($event)"></animal-card>

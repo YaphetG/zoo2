@@ -3,30 +3,72 @@
 </h3>
 <form [formGroup]="animalForm">
     <label class="center-block">Name:
-        <input formControlName="name" class="form-control">
+        <input formControlName="name" class="form-control" >       
+        <div *ngIf="animalForm.controls.name.invalid && (animalForm.controls.name.dirty || animalForm.controls.name.touched)" class="alert alert-danger">
+            <div *ngIf="animalForm.controls.name.errors.uniqueName" >
+                    Name must be unique.
+            </div>
+            <div *ngIf="animalForm.controls.name.errors.required" >
+                    Name is required.
+            </div>
+        </div>
+        
     </label>
+    
     <label  class="center-block">Average Height:
         <input formControlName="avgHeight" class="form-control">
+        <div *ngIf="animalForm.controls.avgHeight.invalid && (animalForm.controls.avgHeight.dirty || animalForm.controls.avgHeight.touched)" class="alert alert-danger">               
+                <div *ngIf="animalForm.controls.avgHeight.errors.required" >
+                        Height is required.
+                </div>
+        </div>
+            
     </label>
     <label  class="center-block">Average Weight:
         <input formControlName="avgWeight" class="form-control">
+        <div *ngIf="animalForm.controls.avgWeight.invalid && (animalForm.controls.avgWeight.dirty || animalForm.controls.avgWeight.touched)" class="alert alert-danger">
+                <div *ngIf="animalForm.controls.avgWeight.errors.required" >
+                        Weight is required.
+                </div>
+        </div>
+            
     </label>
     <label  class="center-block">Class
         <select  class="form-control" formControlName="class">
             <option *ngFor="let animalClass of animalClasses" [value]='animalClass'>{{animalClass}}</option>
         </select>
+        <div *ngIf="animalForm.controls.class.invalid && (animalForm.controls.class.dirty || animalForm.controls.class.touched)" class="alert alert-danger">
+                <div *ngIf="animalForm.controls.class.errors.required" >
+                        Class is required.
+                </div>
+        
+        </div>
     </label>
     <label class="center-block">Description:
         <textarea formControlName="description" id="" cols="30" rows="10" class="form-control"></textarea>
+        <div *ngIf="animalForm.controls.description.invalid && (animalForm.controls.description.dirty || animalForm.controls.description.touched)" class="alert alert-danger">
+                <div *ngIf="animalForm.controls.description.errors.required" >
+                        Description is required.
+                </div>
+        </div>
     </label>
     <label class="center-block">Image Url:
         <input class="form-control" formControlName="imgPath">
+        <div *ngIf="animalForm.controls.imgPath.invalid && (animalForm.controls.imgPath.dirty || animalForm.controls.imgPath.touched)" class="alert alert-danger">
+                <div *ngIf="animalForm.controls.imgPath.errors.required" >
+                        Image Url is required.
+                </div>
+        </div>
     </label>
     <label  class="center-block">Quantity: 
         <input formControlName="quantity" class="form-control">
+        <div *ngIf="animalForm.controls.quantity.invalid && (animalForm.controls.quantity.dirty || animalForm.controls.quantity.touched)" class="alert alert-danger">
+                <div *ngIf="animalForm.controls.quantity.errors.required" >
+                        Quantity is required.
+                </div>
+        </div>
     </label>
 
 </form>
-
 
 <button class="btn btn-primary" (click)="checkAndSave()" >Save </button>

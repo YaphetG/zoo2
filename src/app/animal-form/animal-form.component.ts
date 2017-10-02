@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ZooService } from '../services/animal-zoo.service';
@@ -25,30 +25,33 @@ export class AnimalFormComponent {
         this.formBuilder = formBuilder;
         this.router = router;
         this.createForm();
+        console.log(this.animalForm);
     }
 
     // creates the form
     private createForm() {
         this.animalForm = this.formBuilder.group({
-            name: ['', this.uniqueNameValidator(this.zooService)],
-            avgHeight: '',
-            avgWeight: '',
-            class: '',
-            description: '',
-            imgPath: '',
-            quantity: '',
+            name: ['', Validators.compose([this.uniqueNameValidator(), Validators.required])],
+            avgHeight: ['', Validators.required],
+            avgWeight: ['', Validators.required],
+            class: ['', Validators.required],
+            description: ['', Validators.required],
+            imgPath: ['', Validators.required],
+            quantity: ['', Validators.required],
         });
     }
     // calls the service to check if an animal with the same name is already there
 
-    private uniqueNameValidator(service): ValidatorFn {
-        const animal = service.findByName(name);
-        console.log( 'validator called');
-        return (control: AbstractControl): {[key: string]: any} => {
+    // Should not change to a verb  like `validateUniqueName()` because angular requires it like this
+    // or I wont be able to access it from the template as I did for the error div (line 7 on animal-form template)
+    private uniqueNameValidator(): ValidatorFn {
+            const x =  (control: AbstractControl): {[key: string]: any} => {
+            const animal = this.zooService.findByName(control.value);
             const exists = animal != null;
             return exists ? {'uniqueName': {value: control.value}} : null;
         };
-
+        console.log(x);
+        return x;
     }
 
     public checkAndSave() {

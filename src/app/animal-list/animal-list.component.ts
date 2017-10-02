@@ -28,4 +28,7 @@ export class AnimalListComponent implements OnInit {
         }
         return this.animals;
     }
+    handleZero(animal: Animal) {
+        this.zooService.delete(animal);
+    }
 }

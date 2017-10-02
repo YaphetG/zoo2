@@ -68,4 +68,12 @@ export class ZooService {
         this.animals.push(animal);
     }
 
+    public delete(animal: Animal) {
+        const delIndex = this.animals.indexOf(animal);
+        const temp = this.animals[delIndex];
+        this.animals[delIndex] = this.animals[this.animals.length - 1];
+        this.animals[length - 1] = temp;
+        this.animals.pop();
+    }
+
 }
