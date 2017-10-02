@@ -68,7 +68,5 @@
                 </div>
         </div>
     </label>
-
 </form>
-
-<button class="btn btn-primary" (click)="checkAndSave()" >Save </button>
+<button class="btn btn-primary" (click)="checkAndSave()" [disabled]="animalForm.status == 'INVALID'">Save </button>

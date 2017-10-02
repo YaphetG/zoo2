@@ -45,13 +45,11 @@ export class AnimalFormComponent {
     // Should not change to a verb  like `validateUniqueName()` because angular requires it like this
     // or I wont be able to access it from the template as I did for the error div (line 7 on animal-form template)
     private uniqueNameValidator(): ValidatorFn {
-            const x =  (control: AbstractControl): {[key: string]: any} => {
-            const animal = this.zooService.findByName(control.value);
-            const exists = animal != null;
-            return exists ? {'uniqueName': {value: control.value}} : null;
-        };
-        console.log(x);
-        return x;
+            return  (control: AbstractControl): {[key: string]: any} => {
+                const animal = this.zooService.findByName(control.value);
+                const exists = animal != null;
+                return exists ? {'uniqueName': {value: control.value}} : null;
+            };
     }
 
     public checkAndSave() {
@@ -62,7 +60,6 @@ export class AnimalFormComponent {
         }else {
             this.errors = this.animalForm.errors;
         }
-        console.log(this.animalForm);
     }
 }
 
